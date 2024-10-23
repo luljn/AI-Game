@@ -1,8 +1,11 @@
 import pygame
 from sys import exit
-from model.circle import *
-from model.square import *
+
 from model.factory import *
+from model.circle import *
+from model.sound import Sound
+from model.square import *
+
 from view.window import *
 
 
@@ -30,6 +33,7 @@ class Controller :
         pygame.display.set_caption(self.window.getTitle())
         # pygame.mixer.music.load("resources/sounds/map_music.wav")
         # pygame.mixer.music.play(-1)
+        Sound.getAndPlaySound("resources/sounds/map_music.wav")
         buttons = self.factory.buttonFactory(self.window)
         
         #Game loop
