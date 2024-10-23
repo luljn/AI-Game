@@ -31,10 +31,9 @@ class Controller :
     def run(self) :
         
         pygame.display.set_caption(self.window.getTitle())
-        # pygame.mixer.music.load("resources/sounds/map_music.wav")
-        # pygame.mixer.music.play(-1)
-        Sound.getAndPlaySound("resources/sounds/map_music.wav")
+        # Sound.getAndPlaySound("resources/sounds/map_music.wav")
         buttons = self.factory.buttonFactory(self.window)
+        forms = self.factory.formFactory(self.window)
         
         #Game loop
         while self.running :
@@ -47,7 +46,7 @@ class Controller :
             
             elif(self.window.getView() == "game") : 
                 
-                self.game(buttons)
+                self.game(buttons, forms)
                 
             elif(self.window.getView() == "options") : 
                 
@@ -102,15 +101,16 @@ class Controller :
         pygame.display.flip()
         pygame.display.update()
     
-    def game(self, buttons) :
+    def game(self, buttons, forms) :
         
         self.window.gameView(buttons)
-        self.square.drawSprite()
-        self.circle.drawSprite()
-        self.square.move(self.window.dt)
-        self.circle.move(self.window.dt)
+        
+        for form in forms :
+            
+            form.drawSprite()
+            form.move(self.window.getDT())
+        
         pygame.display.flip()
-        pygame.display.update()
     
     def options(self, buttons) :
         
