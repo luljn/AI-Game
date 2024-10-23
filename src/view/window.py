@@ -14,7 +14,7 @@ class Window :
         # self.screen_height = 720
         
         #screen configurations
-        self.title = "Pygame-UI"
+        self.title = "AI-GAME"
         self.screen = pygame.display.set_mode((self.screen_width, self.screen_height), pygame.NOFRAME)
         self.clock = pygame.time.Clock()
         self.dt = 0
@@ -30,7 +30,6 @@ class Window :
         pygame_logo = pygame.image.load("resources/img/pygame_logo.png").convert()
         menu = pygame.image.load("resources/img/menu.png").convert()
         
-        self.screen.fill("white")
         self.screen.blit(pygame.transform.scale(pygame_logo, (self.getScreenWidth(), self.getScreenHeight())), (0, 0))
         self.screen.blit(menu, (self.getScreenWidth() / 4.25, self.getScreenHeight() / 10))
         self.mouse_position = pygame.mouse.get_pos()
@@ -63,6 +62,18 @@ class Window :
         for button in buttons :
             
             if(button.text_input == "Retour" or button.text_input == "Enregistrer") :
+                
+                button.changeColor(self.mouse_position)
+                button.update(self.screen)
+    
+    def creditsView(self, buttons) :
+        
+        self.screen.fill("black")
+        self.mouse_position = pygame.mouse.get_pos()
+        
+        for button in buttons :
+            
+            if(button.text_input == "Retour") :
                 
                 button.changeColor(self.mouse_position)
                 button.update(self.screen)

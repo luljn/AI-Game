@@ -23,8 +23,6 @@ class Controller :
         
         #
         self.window = Window()
-        self.circle = Circle(self.window)
-        self.square = Square(self.window)
         self.factory = Factory()
     
     #main controller method
@@ -47,10 +45,14 @@ class Controller :
             elif(self.window.getView() == "game") : 
                 
                 self.game(buttons, forms)
-                
+            
             elif(self.window.getView() == "options") : 
                 
                 self.options(buttons)
+            
+            elif(self.window.getView() == "credits") : 
+                
+                self.credits(buttons)
             
         self.quit()
     
@@ -64,7 +66,7 @@ class Controller :
                 
             for button in buttons :
                 
-                #Click event management 
+                #Click event management.
                 if(event.type == pygame.MOUSEBUTTONDOWN) :
                     
                     #Launch the game view.
@@ -76,19 +78,24 @@ class Controller :
                     if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Options") :
                         
                         self.window.setView("options")
+                        
+                    #Launch the credits view.
+                    if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Credits") :
+                        
+                        self.window.setView("credits")
                     
                     #Save the options(in the options view).
                     if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Enregistrer") :
                         
                         #action to save the options chose by the user (to define).
                         pass
-                        
+                    
                     #Launch the options view.
                     if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Retour") :
                         
                         self.window.setView("welcome")
-                        
-                    #Close the window and quit the game
+                    
+                    #Close the window and quit the game.
                     if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Quitter") :
                         
                         self.running == False
@@ -115,6 +122,12 @@ class Controller :
     def options(self, buttons) :
         
         self.window.optionsView(buttons)
+        pygame.display.flip()
+        pygame.display.update()
+        
+    def credits(self, buttons) : 
+        
+        self.window.creditsView(buttons)
         pygame.display.flip()
         pygame.display.update()
     
