@@ -11,7 +11,7 @@ class Controller :
     
     def __init__(self) :
         
-        #Pygame initailization
+        #Pygame initilization
         pygame.init()
         pygame.mixer.init()
         
@@ -32,70 +32,87 @@ class Controller :
         # pygame.mixer.music.play(-1)
         buttons = self.factory.buttonFactory(self.window)
         
+        #Game loop
         while self.running :
             
-            for event in pygame.event.get() :
-                
-                if event.type == pygame.QUIT :
-                    
-                    self.running = False
-                
-                for button in buttons :
-                    
-                    #Click event management 
-                    if(event.type == pygame.MOUSEBUTTONDOWN) :
-                        
-                        #Launch the game view.
-                        if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Jouer") :
-                            
-                            self.window.setView("game")
-                        
-                        #Launch the options view.
-                        if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Options") :
-                            
-                            self.window.setView("options")
-                        
-                        #Save the options(in the options view).
-                        if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Enregistrer") :
-                            
-                            #action to save the options chose by the user (to define).
-                            pass
-                            
-                        #Launch the options view.
-                        if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Retour") :
-                            
-                            self.window.setView("welcome")
-                        
-                        #Close the window and quit the game
-                        if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Quitter") :
-                        
-                            self.running == False
-                            self.quit()
-                            exit()
+            self.eventHandler(buttons)
             
             if(self.window.getView() == "welcome") : 
                 
-                self.window.welcomeView(buttons)
-                pygame.display.flip()
-                pygame.display.update()
+                self.welcome(buttons)
             
-            if(self.window.getView() == "game") : 
+            elif(self.window.getView() == "game") : 
                 
-                self.window.gameView(buttons)
-                self.square.drawSprite()
-                self.circle.drawSprite()
-                self.square.move(self.window.dt)
-                self.circle.move(self.window.dt)
-                pygame.display.flip()
-                pygame.display.update()
+                self.game(buttons)
                 
-            if(self.window.getView() == "options") : 
+            elif(self.window.getView() == "options") : 
                 
-                self.window.optionsView(buttons)
-                pygame.display.flip()
-                pygame.display.update()
+                self.options(buttons)
             
         self.quit()
+    
+    def eventHandler(self, buttons) : 
+        
+        for event in pygame.event.get() :
+            
+            if event.type == pygame.QUIT :
+                
+                self.running = False
+                
+            for button in buttons :
+                
+                #Click event management 
+                if(event.type == pygame.MOUSEBUTTONDOWN) :
+                    
+                    #Launch the game view.
+                    if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Jouer") :
+                        
+                        self.window.setView("game")
+                    
+                    #Launch the options view.
+                    if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Options") :
+                        
+                        self.window.setView("options")
+                    
+                    #Save the options(in the options view).
+                    if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Enregistrer") :
+                        
+                        #action to save the options chose by the user (to define).
+                        pass
+                        
+                    #Launch the options view.
+                    if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Retour") :
+                        
+                        self.window.setView("welcome")
+                        
+                    #Close the window and quit the game
+                    if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Quitter") :
+                        
+                        self.running == False
+                        self.quit()
+                        exit()
+    
+    def welcome(self, buttons) :
+        
+        self.window.welcomeView(buttons)
+        pygame.display.flip()
+        pygame.display.update()
+    
+    def game(self, buttons) :
+        
+        self.window.gameView(buttons)
+        self.square.drawSprite()
+        self.circle.drawSprite()
+        self.square.move(self.window.dt)
+        self.circle.move(self.window.dt)
+        pygame.display.flip()
+        pygame.display.update()
+    
+    def options(self, buttons) :
+        
+        self.window.optionsView(buttons)
+        pygame.display.flip()
+        pygame.display.update()
     
     def quit(self):
         
