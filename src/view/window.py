@@ -37,7 +37,7 @@ class Window :
         
         for button in buttons :
             
-            if (button.text_input != "Retour") :
+            if (button.text_input != "Retour" and button.text_input != "Enregistrer") :
                 
                 button.changeColor(self.mouse_position)
                 button.update(self.screen)
@@ -62,7 +62,7 @@ class Window :
         
         for button in buttons :
             
-            if(button.text_input == "Retour") :
+            if(button.text_input == "Retour" or button.text_input == "Enregistrer") :
                 
                 button.changeColor(self.mouse_position)
                 button.update(self.screen)

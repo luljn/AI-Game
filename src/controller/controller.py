@@ -54,6 +54,12 @@ class Controller :
                         if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Options") :
                             
                             self.window.setView("options")
+                        
+                        #Save the options(in the options view).
+                        if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Enregistrer") :
+                            
+                            #action to save the options chose by the user (to define).
+                            pass
                             
                         #Launch the options view.
                         if (button.checkPosition(pygame.mouse.get_pos()) and button.text_input == "Retour") :
