@@ -14,7 +14,6 @@ class Form :
     
     def move(self, dt) :
         
-        # self.drawSprite()
         self.keys = pygame.key.get_pressed()
         if self.keys[pygame.K_UP] : 
             
