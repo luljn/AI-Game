@@ -2,9 +2,7 @@ import pygame
 from sys import exit
 
 from model.factory import *
-from model.circle import *
 from model.sound import Sound
-from model.square import *
 
 from view.window import *
 

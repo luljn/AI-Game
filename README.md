@@ -1,6 +1,6 @@
 # Description
 
-A two-player game powered by Artificial Initelligence.
+A two-player game powered by Artificial Initelligence (for Linux based OS).
 
 # Tools used.
 
