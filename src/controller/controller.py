@@ -16,7 +16,7 @@ class Controller :
         
         #Pygame initilization
         pygame.init()
-        pygame.mixer.init()
+        # pygame.mixer.init()
         
         #Game loop variable
         self.running = True
@@ -63,7 +63,7 @@ class Controller :
             if event.type == pygame.QUIT :
                 
                 self.running = False
-                
+            
             for button in buttons :
                 
                 #Click event management.
@@ -124,7 +124,7 @@ class Controller :
         self.window.optionsView(buttons)
         pygame.display.flip()
         pygame.display.update()
-        
+    
     def credits(self, buttons) : 
         
         self.window.creditsView(buttons)
